@@ -19,8 +19,9 @@ function GameObject (object) {
   this.dimensions = object.dimensions;
   }
 GameObject.prototype.destroy = function () {
-  return `Object was removed from the game`;
-}
+  return `${this.name} was removed from the game`;
+
+};
 
 /*
   === CharacterStats ===
@@ -32,12 +33,13 @@ GameObject.prototype.destroy = function () {
 CharacterStats.prototype = Object.create(GameObject.prototype);
 
 function CharacterStats(object) {
+  GameObject.call(this, object);
   this.healthPoints = object.healthPoints;
   this.name = object.name;
 }
 CharacterStats.prototype.takeDamage = function() {
   return `${this.name} took damage`;
-}
+};
 
 /*
   === Humanoid (Having an appearance or character resembling that of a human.) ===
@@ -52,14 +54,15 @@ CharacterStats.prototype.takeDamage = function() {
 Humanoid.prototype = Object.create(CharacterStats.prototype);
 
  function Humanoid (object) {
+   CharacterStats.call(this, object);
    this.team = object.team;
-   this.weapon = object.weapons;
+   this.weapons = object.weapons;
    this.language = object.language;
-};
+}
 
 Humanoid.prototype.greet = function () {
   return `${this.name} offers a greeting in ${this.language}`;
-}
+};
 
 /*
   * Inheritance chain: GameObject -> CharacterStats -> Humanoid
@@ -131,7 +134,7 @@ Humanoid.prototype.greet = function () {
   console.log(mage.takeDamage()); // Bruce took damage.
   console.log(swordsman.destroy()); // Sir Mustachio was removed from the game.
 
-
+console.log(mage);
   // Stretch task: 
   // * Create Villain and Hero constructor functions that inherit from the Humanoid constructor function.  
   // * Give the Hero and Villains different methods that could be used to remove health points from objects which could result in destruction if health gets to 0 or drops below 0;
