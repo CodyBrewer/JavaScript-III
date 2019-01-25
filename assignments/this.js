@@ -12,15 +12,34 @@
 // Principle 1
 
 // code example for Window Binding
-
+function displayWords(words){
+    console.log(this);
+    return words;
+}
+displayWords("These are words");
 // Principle 2
 
 // code example for Implicit Binding
-
+const barbarian = {
+    action: 'Draw Sword',
+    displayAction: function(fightingWords){
+        console.log(`I ${this.action} and ${fightingWords}`);
+        console.log(this);
+    }
+};
+barbarian.displayAction("These are fighting words");
 // Principle 3
 
 // code example for New Binding
-
+function Character(player) {
+    this.class = "Warlock";
+    this.player = player;
+    this.speak = function () {
+      console.log(`hello i am ${player} and I am a ${this.class}`);
+    };
+}
+const boyle = new Character('Boyle');
+const holt = new Character('holt');
 // Principle 4
 
 // code example for Explicit Binding
