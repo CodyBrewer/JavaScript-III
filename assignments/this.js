@@ -39,7 +39,9 @@ function Character(player) {
     };
 }
 const boyle = new Character('Boyle');
-const holt = new Character('holt');
+const holt = new Character('Holt');
 // Principle 4
 
 // code example for Explicit Binding
+boyle.speak.call(holt);
+holt.speak.apply(boyle);
